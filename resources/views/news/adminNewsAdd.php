@@ -16,3 +16,7 @@
     <br><br>
     <input type="submit" value="Отправить статью">
 </form>
+
+<a href="<?=route('news.index')?>">
+    Вернутся на главную
+</a>
