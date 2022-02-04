@@ -16,7 +16,7 @@ class Controller extends BaseController
     {
         $faker =Factory::create();
         $news = [];
-        for($i = 0; $i < 10; $i++)
+        for($i = 0; $i < 5; $i++)
         {
             $news[] = [
                 'id' => $i,
@@ -27,6 +27,7 @@ class Controller extends BaseController
         }
         return $news;
     }
+
     public function getNewsById(int $id)
     {
         $faker =Factory::create();
@@ -36,5 +37,23 @@ class Controller extends BaseController
                 'discription' => $faker->text( ),
                 'author' => $faker->userName()
             ];
+    }
+
+    public function getNewsCategory()
+    {
+        $array=array(
+            "Спорт"=> array($this->getNews()),
+            "Развлечение"=> array($this->getNews()),
+            "Новости дня"=> array($this->getNews()),
+            "Кулинария"=> array($this->getNews()),
+            "Экономика "=> array($this->getNews()),
+        );
+        return $array;
+    }
+
+    public function getNewsCategoryHistory(string $category)
+    {
+        $array=$this->getNewsCategory();
+        return $array[$category];
     }
 }

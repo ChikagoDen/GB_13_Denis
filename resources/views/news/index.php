@@ -1,11 +1,16 @@
-
-<h1> Список новостей</h1>
+<hr>
+<h1> Главная  страница</h1>
+<hr>
+<h2> Правдивый новостной канал "Сплетни"</h2>
+<p>
+    Наш сайт предостовляет самую правдивую и актуальную информацию.
+</p>
+<a href="<?=route('news.category')?>">
+    <h3> Категории новостей</h3>
+</a>    
 <br>
-<?php foreach($news as $newsItem): ?>
-    <div>
-        <h2><a href="<?=route('news.show', ['id'=>$newsItem['id']])?>"><?=$newsItem['title']?></a></h2>
-        <p><?=$newsItem['discription']?></p>
-        <p><?=$newsItem['author']?></p>
-        <br><hr>
-    </div>
-<?php endforeach; ?>
+<hr>       
+<a href="<?=route('news.autorize')?>">
+    <h3> авторизация</h3>
+</a>               
+         
