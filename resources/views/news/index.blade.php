@@ -1,3 +1,4 @@
+@include('inc.include', ['name'=>'Сложный'])
 <hr>
 <h1> Главная  страница</h1>
 <hr>
@@ -12,5 +13,8 @@
 <hr>       
 <a href="<?=route('news.autorize')?>">
     <h3> авторизация</h3>
-</a>               
+</a>   
+<x-alert type="success" message="Успех!!!!!!!!!!"></x-alert>            
          
+<x-alert type="warning" message="Ошибка!!!!!!!!!!"></x-alert> 
+

@@ -23,6 +23,8 @@ Route::get('/', function () {return view('welcome');});
 
 Route::group(['prefix'=>"admin", "as"=>'admin.'], function ()
 {
+    // Route::view('/', 'news.index');
+
     Route::resource($name = '/news',$controller = AdminNewsController::class);
     Route::resource($name = '/category',$controller = AdminCategoryController::class);
 });
