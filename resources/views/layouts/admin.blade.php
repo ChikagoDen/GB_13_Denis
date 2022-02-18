@@ -1,15 +1,10 @@
-
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
-
-    <title>@section('title') Админ @show</title>
-    
-
+    <title>@section('title')Админ @show</title>
     <!-- Bootstrap core CSS -->
-<link href="{{ asset('css/bootstrap.min.css')}}" rel="stylesheet">
-
+    <link href="{{ asset('css/bootstrap.min.css')}}" rel="stylesheet">
 
     <style>
       .bd-placeholder-img {
@@ -26,37 +21,34 @@
         }
       }
     </style>
-
-    
     <!-- Custom styles for this template -->
     <link href="{{asset('css/dashboard.css')}}" rel="stylesheet">
   </head>
   <body>
     
-<x-admin.header></x-admin.header>
+    <x-admin.header></x-admin.header>
 
-<div class="container-fluid">
-  <div class="row">
+    <div class="container-fluid">
+      <div class="row">
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 
+            @yield('header')
 
-    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        @yield('header')
+          </div>
+
+          <x-admin.sidebar></x-admin.sidebar>
+
+          <div class="table-responsive">
+
+            @yield('content')
+
+          </div>
+        </main>
       </div>
-
-      <x-admin.sidebar></x-admin.sidebar>
-
-      <div class="table-responsive">
-        @yield('content')
-      </div>
-    </main>
-  </div>
-</div>
-
-
+    </div>
     <script src="{{ asset ('js/bootstrap.bundle.min.js') }}"></script>
-
-      <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
-      <script src="{{ asset ('js/dashboard.js')}}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
+    <script src="{{ asset ('js/dashboard.js')}}"></script>
   </body>
 </html>

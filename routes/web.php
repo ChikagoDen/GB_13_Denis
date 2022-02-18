@@ -19,15 +19,18 @@ use App\Http\Controllers\AutorizeController;
 |
 */
 
-Route::get('/', function () {return view('welcome');});
+Route::get($name = 'admin/news/createNews',$controller = [AdminNewsController::class, 'createNews'])->name($name = 'admin.news.createNews');
+Route::get($name = 'admin/news/{category}',$controller = [AdminNewsController::class, 'categoryShow'])->name($name = 'admin.news.categoryShow');
 
 Route::group(['prefix'=>"admin", "as"=>'admin.'], function ()
 {
-    // Route::view('/', 'news.index');
 
     Route::resource($name = '/news',$controller = AdminNewsController::class);
     Route::resource($name = '/category',$controller = AdminCategoryController::class);
 });
+ 
+
+
 
 Route::get($name = '/index',$controller = [StartController::class, 'index'])->name($name = 'news.index');
 
@@ -35,8 +38,7 @@ Route::get($name = '/autorize',$controller = [AutorizeController::class, 'index'
 
 Route::get($name = '/category',$controller = [CategoryController::class, 'index'])->name($name = 'news.category');
 
-Route::get('/category/{category}', [CategoryController::class, 'categoryShow'])
-->name($name = 'news.categoryShow');
+Route::get('/category/{category}', [CategoryController::class, 'categoryShow'])->name($name = 'news.categoryShow');
 
 Route::get('/category/action/{id}', [NewsController::class, 'show'])
 ->where($name = 'id', $expression='\d+')

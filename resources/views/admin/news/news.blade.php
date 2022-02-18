@@ -1,26 +1,29 @@
 @extends('layouts.main')
 @section('include')
+@extends('layouts.main')
+@section('include')
     @include('inc.include', ['name'=>'Мы все знаем про '.$category])
 @endsection
 @section('title')
-    Категория: <?=$category?>
+    Админ: категория - <?=$category?>
 @endsection
 @section('perehod')
 @show 
 @section('content')
     <div>
-        <a href="<?=route('news.index')?>">
+        <a href="{{route('admin.category.index')}}">
             Вернутся на главную
-        </a>
-        <br>
-        <a href="<?=route('news.category')?>">
-            Выбор категории
         </a>
     </div>
     <hr>
     <h3>
         Категория - {{$category}}
     </h3>
+    <div class="btn-toolbar mb-2 mb-md-0">
+        <div class="btn-group me-2">
+            <a href="{{ route('admin.news.createNews')}}" type="button" class="btn btn-sm btn-outline-secondary">Добавить статью</a>
+        </div>
+    </div>
     <hr>
     <div class="album py-5 bg-light">
         <div class="container">
@@ -46,12 +49,23 @@
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-sm btn-outline-secondary" 
-                                        onclick="window.location.href=`{{route('news.show', ['id'=>$newsItem[$i]['id']])}}`" >
-                                                Посмотреть
+                                            onclick="window.location.href=`{{route('news.show', ['id'=>$newsItem[$i]['id']])}}`" >
+                                                Посмотреть 
+                                        </button>
+                                    </div>
+                                    <small class="text-muted">{{now('Europe/Moscow')}}</small>
+                                </div>  
+                                <br>
+                                <div class="d-flex justify-content-between align-items-center">                                  
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary" 
+                                            onclick="window.location.href=`#`" >
+                                            {{-- onclick="window.location.href=`{{route('admin.news.edit', ['id'=>$newsItem[$i]['id']])}}`" > --}}
+                                            Редактировать
                                         </button>
                                         {{-- <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> --}}
                                     </div>
-                                    <small class="text-muted">{{now('Europe/Moscow')}}</small>
+                                    <small class="text-muted">{{now('Europe/Moscow')}}</small> 
                                 </div>
                             </div>
                         </div>
@@ -61,15 +75,3 @@
         </div>
     </div>
 @endsection
-
-
-
-
-
-
-
-
-
-
-
-

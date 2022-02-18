@@ -1,1 +1,1 @@
-<h2>Инклуд!!!!! {{$name}}</h2>
+<h2 class="include-index">"Сплетни" - {{$name}}</h2>

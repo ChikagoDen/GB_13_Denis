@@ -14,9 +14,10 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view("admin/news/index");
+       $news = $this->getNewsCategory();
+       return view("admin/news/index", ['news'=>$news]);
     }
-
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -24,7 +25,6 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
