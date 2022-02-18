@@ -14,19 +14,26 @@ class NewsController extends Controller
      */
     public function index()
     {
-        return "Admin News";
-    }
 
+    } 
+    public function createNews()
+    {
+        return view($view = 'admin/news/createNews');
+    }
+    public function CategoryShow(string $category)
+    {
+        $news = $this->getNewsCategoryHistory($category);
+        return view($view = 'admin/news/news', ['news'=>$news, 'category'=>$category]);
+    }
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
+
     public function create()
     {
-        //
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -46,7 +53,7 @@ class NewsController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
