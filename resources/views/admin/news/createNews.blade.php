@@ -38,9 +38,9 @@
         <br>
         <label for="status">Статус</label><br>
         <select id="status" name="status">
-            <option @if(old('status')==="Черновик")>Черновик</option>
-            <option @if(old('status')==="Активный")>Активный</option>
-            <option @if(old('status')==="Закрыт")>Закрыт</option>
+            <option @if(old('status')==="Черновик")@endif>Черновик</option>
+            <option @if(old('status')==="Активный")@endif>Активный</option>
+            <option @if(old('status')==="Закрыт")@endif>Закрыт</option>
         </select>
         <br>        
         <small class="text-muted">{{now('Europe/Moscow')}}</small>

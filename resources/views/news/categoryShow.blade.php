@@ -28,10 +28,12 @@
 
                 @foreach ($news as $newsItem) 
                     @for($i=0; $i<count($newsItem); $i++)
+
+                    
                         <div class="card shadow-sm">
                             <h3>
                                 Заголовок:
-                                <a href="{{route('news.show', ['id'=>$newsItem[$i]['id']])}}">
+                                <a href="{{route ( 'news.show', ['id'=>$newsItem[$i]['id']])}}">
                                     {{$newsItem[$i]['title']}}
                                 </a>
                             </h3>
@@ -45,11 +47,11 @@
                                     <p>Автор: {{$newsItem[$i]['author']}}</p>                            
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary" 
-                                        onclick="window.location.href=`{{route('news.show', ['id'=>$newsItem[$i]['id']])}}`" >
+                                        {{-- <button type="button" class="btn btn-sm btn-outline-secondary" 
+                                            onclick="window.location.href=`{{route('news.show', ['id'=>$newsItem[$i]['id']])}}`" >
                                                 Посмотреть
-                                        </button>
-                                        {{-- <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> --}}
+                                        </button> --}}
+                                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
                                     </div>
                                     <small class="text-muted">{{now('Europe/Moscow')}}</small>
                                 </div>
