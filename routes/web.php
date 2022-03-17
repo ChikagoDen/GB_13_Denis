@@ -19,8 +19,6 @@ use App\Http\Controllers\AutorizeController;
 |
 */
 
-Route :: get ( $name = 'admin/news/createNews' , $controller = [ AdminNewsController ::class, 'createNews' ])-> name ( $name = 'admin.news.createNews' );
-Route :: get ( $name = 'admin/news/{category}' , $controller = [ AdminNewsController ::class, 'categoryShow' ])-> name ( $name = 'admin.news.categoryShow' );
 Route :: get ( 'admin/news/createNews' , [ AdminNewsController ::class, 'createNews' ])-> name ( $name = 'admin.news.createNews' );
 Route :: get ( 'admin/news/{category}' , [ AdminNewsController ::class, 'categoryShow' ])-> name ( $name = 'admin.news.categoryShow' );
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class NewsController extends Controller
 {
@@ -42,16 +43,18 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        // dd($request->all());
         // dd($request->only('name',"avtor"));
         // dd($request->except('name',"avtor"));
         // dd($request->input("avtor"));
         // dd($request->input("avtor2","net tacogo"));
         // dd($request->has("avtor2"));
         // dd($request->query());
-
-        $data = json_encode($request->all());
-        file_put_contents(public_path('fileJson/data.json'),$data);
+        $data = $request->except('_token');
+        file_put_contents(public_path('fileJson/data.json'),$data); //public/fileJson/..
+        Storage::put('fileJson2/data.json', $data); //storage/app/fileJson2/..
+        return $data;
+        
     }
 
     /**

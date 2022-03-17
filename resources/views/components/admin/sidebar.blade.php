@@ -2,13 +2,13 @@
   <div class="position-sticky pt-3">
     <ul class="nav flex-column">
       <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="{{route('news.index')}}">
+        <a class="nav-link @if (request()->routeIs('admin.*'))  active @endif" aria-current="page" href="{{route('news.index')}}">
           <span data-feather="home"></span>
           Главная
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link @if (request()->routeIs('admin.category.index'))  active @endif" href="#">
           <span data-feather="file"></span>
           Новости
         </a>
