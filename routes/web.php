@@ -4,6 +4,9 @@ use App\Http\Controllers\Admin\NewsController as AdminNewsController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\StartController;
+use App\Http\Controllers\AutorizeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,24 +19,19 @@ use App\Http\Controllers\NewsController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route :: get ( 'admin/news/createNews' , [ AdminNewsController ::class, 'createNews' ])-> name ( $name = 'admin.news.createNews' );
+Route :: get ( 'admin/news/{category}' , [ AdminNewsController ::class, 'categoryShow' ])-> name ( $name = 'admin.news.categoryShow' );
 
-Route::group(['prefix'=>"admin", "as"=>'admin.'], function ()
+
+Route :: group ([ 'prefix' => "admin" , "as" => 'admin.' ], function ()
 {
-    Route::resource($name = '/news',$controller = AdminNewsController::class);
-    Route::resource($name = '/category',$controller = AdminCategoryController::class);
+    Route :: resource ( '/news' , AdminNewsController ::class);
+    Route :: resource ( '/category' , AdminCategoryController :: class);
 });
 
-// Route::resource($name = 'admin/news',$controller = AdminNewsController::class);
-// Route::resource($name = 'admin/category',$controller = AdminCategoryController::class);
 
-
-
-Route::get('/hello/{name}', fn(string $name) => "Приветствуем тебя , {$name}");
-Route::get('/info/{inform}', fn(string $inform) => "<h2>Информация о сайте<h2> ,<br> {$inform}");
-Route::get('/news', [NewsController::class, 'index'])->name($name = 'news.index');
-Route::get('/news/action/{id}', [NewsController::class, 'show'])
-->where($name = 'id', $expression='\d+')
-->name($name = 'news.show');
+Route :: get ( '/index' ,[ StartController ::class, 'index' ])-> name ( $name = 'news.index' );
+Route :: get ( '/autorize' ,[ AutorizeController ::class, 'index' ])-> name ( $name = 'news.autorize' );
+Route :: get ( '/category' ,[ CategoryController ::class, 'index' ])-> name ( $name = 'news.category' );
+Route :: get ( '/category/{category}' , [ CategoryController ::class, 'categoryShow' ])-> name ( $name = 'news.categoryShow' );
+Route :: get ( '/news/{id}' , [ NewsController ::class, 'show' ])-> name ( $name = 'news.show' );

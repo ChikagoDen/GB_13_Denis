@@ -1,0 +1,21 @@
+.include-index
+{
+    background-color: rgb(207, 221, 221);
+    text-align: center;
+}
+a{
+    text-decoration: none;
+    color: rgb(90, 83, 172);
+}
+a:hover{
+    color: rgb(73, 151, 142);
+}
+.body-1{
+    padding-left: 15px;padding-right: 15px;
+}
+.body-2{
+    padding-left: 15px; padding-right: 15px;
+}
+p,h3{
+    margin: 15px;
+}
