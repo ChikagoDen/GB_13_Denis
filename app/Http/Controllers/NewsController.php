@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\News;
 use Illuminate\Http\Request;
 use phpDocumentor\Reflection\Types\This;
 
@@ -13,7 +14,8 @@ class NewsController extends Controller
             {
                 abort($code=404);
             }
-        $news = $this->getNewsById($id);
+        $model = new News();
+        $news = $model->getNewsById($id);
         return view($view = 'news/show', ['newsItem'=>$news]);
     }
 }

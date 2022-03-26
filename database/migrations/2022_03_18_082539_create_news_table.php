@@ -15,6 +15,14 @@ class CreateNewsTable extends Migration
     {
         Schema::create('News', function (Blueprint $table) {
             $table->id();
+            $table->string('Title',255);
+            $table->text('Discription')->nullable();
+            $table->text('DiscriptionCorotco')->nullable();
+            $table->string('Avtor',255)->default("Admin");
+            $table->enum('Status',['Черновик','Активный','Закрыт'])->default('Черновик');
+            $table->string('Image',255)->nullable();
+            $table->boolean('Active')->default(true);
+            $table->foreignId('FK_Category');
             $table->timestamps();
         });
     }

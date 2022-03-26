@@ -30,12 +30,11 @@
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 
                 @foreach ($news as $newsItem) 
-                    @for($i=0; $i<count($newsItem); $i++)
                         <div class="card shadow-sm">
                             <h3>
                                 Заголовок:
-                                <a href="{{route('news.show', ['id'=>$newsItem[$i]['id']])}}">
-                                    {{$newsItem[$i]['title']}}
+                                <a href="{{route('news.show', ['id'=>$newsItem->id])}}">
+                                    {{$newsItem->Title}}
                                 </a>
                             </h3>
                             <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Картинка из новостей" preserveAspectRatio="xMidYMid slice" focusable="false">
@@ -44,32 +43,42 @@
                                 <text x="50%" y="50%" fill="#eceeef" dy=".3em">Картинка из новостей</text>
                             </svg>
                             <div class="card-body">
-                                <p class="card-text">{{$newsItem[$i]['discription']}}</p>
-                                    <p>Автор: {{$newsItem[$i]['author']}}</p>                            
+                                <p class="card-text">{{$newsItem->Discription}}</p>
+                                    <p>Автор: {{$newsItem->Avtor}}</p>                            
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-sm btn-outline-secondary" 
-                                            onclick="window.location.href=`{{route('news.show', ['id'=>$newsItem[$i]['id']])}}`" >
+                                            onclick="window.location.href='{{route('news.show', ['id'=>$newsItem->id])}}'" >
+                                            {{-- onclick="window.location.href = '{{route ( 'news.show', ['id'=>$item->id])}}';" --}}
                                                 Посмотреть 
                                         </button>
                                     </div>
-                                    <small class="text-muted">{{now('Europe/Moscow')}}</small>
                                 </div>  
                                 <br>
                                 <div class="d-flex justify-content-between align-items-center">                                  
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-sm btn-outline-secondary" 
                                             onclick="window.location.href=`#`" >
-                                            {{-- onclick="window.location.href=`{{route('admin.news.edit', ['id'=>$newsItem[$i]['id']])}}`" > --}}
+                                            {{-- onclick="window.location.href={{route('admin.news.edit', ['id'=>$newsItem->id])}}" > --}}
+                                            Удалить
+                                        </button>
+                                    </div>
+                                </div>  
+                                <br>                              
+                                <div class="d-flex justify-content-between align-items-center">                                  
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary" 
+                                            onclick="window.location.href=`#`" >
+                                            {{-- onclick="window.location.href={{route('admin.news.edit', ['id'=>$newsItem->id])}}" > --}}
                                             Редактировать
                                         </button>
-                                        {{-- <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> --}}
                                     </div>
-                                    <small class="text-muted">{{now('Europe/Moscow')}}</small> 
+                                    
                                 </div>
+                                <br>
+                                <small class="text-muted">{{now('Europe/Moscow')}}</small> 
                             </div>
                         </div>
-                    @endfor
                 @endforeach
             </div>
         </div>
