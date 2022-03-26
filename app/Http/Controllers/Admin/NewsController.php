@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\News;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -23,7 +24,8 @@ class NewsController extends Controller
     }
     public function CategoryShow(string $category)
     {
-        $news = $this->getNewsCategoryHistory($category);
+        $model=new News();
+        $news=$model->getNews($category);
         return view($view = 'admin/news/news', ['news'=>$news, 'category'=>$category]);
     }
     /**

@@ -14,11 +14,11 @@
     <hr>
     <h3> Категории</h3>
     <br>
-    @foreach($news as $newsItemKey=>$value)
+    @foreach($news as $newsItemKey)
     <div>
         <h2>
-            <a href="{{route('news.categoryShow', ['category'=>$newsItemKey])}}">
-                <?=$newsItemKey?>
+            <a href="{{route('news.categoryShow', ['category'=>Str::replaceLast('.', '', $newsItemKey->title) ])}}">
+                <?=$newsItemKey->title?>
             </a>
         </h2>
     </div>
