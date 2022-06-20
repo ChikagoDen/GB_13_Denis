@@ -17,8 +17,8 @@
     @foreach($news as $newsItemKey)
     <div>
         <h2>
-            <a href="{{route('news.categoryShow', ['category'=>Str::replaceLast('.', '', $newsItemKey->title) ])}}">
-                <?=$newsItemKey->title?>
+            <a href="{{route('news.categoryShow', ['category'=>Str::replaceLast('.', '', $newsItemKey->Title) ])}}">
+                <?=$newsItemKey->Title?>
             </a>
         </h2>
     </div>

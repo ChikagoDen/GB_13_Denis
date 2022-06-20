@@ -2,8 +2,8 @@
 @section('title')
   @parent - главная.
 @endsection
-
 @section('header')
+@include('inc.message')
   <h2 class="h2">Список категорий</h2>
     <div class="btn-toolbar mb-2 mb-md-0">
       <div class="btn-group me-2">
@@ -22,8 +22,8 @@
   
     <div>
         <h2>
-          <a href="{{route('admin.news.categoryShow', ['category'=>Str::replaceLast('.', '', $newsItemKey->title) ])}}">
-            <?=$newsItemKey->title?>
+          <a href="{{route('admin.news.categoryShow', ['category'=>Str::replaceLast('.', '', $newsItemKey->Title) ])}}">
+            <?=$newsItemKey->Title?>
           </a>
         </h2>
     </div>

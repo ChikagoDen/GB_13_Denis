@@ -1,7 +1,5 @@
 @extends('layouts.main')
 @section('include')
-@extends('layouts.main')
-@section('include')
     @include('inc.include', ['name'=>'Мы все знаем про '.$category])
 @endsection
 @section('title')
@@ -28,7 +26,7 @@
     <div class="album py-5 bg-light">
         <div class="container">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-
+                
                 @foreach ($news as $newsItem) 
                         <div class="card shadow-sm">
                             <h3>
@@ -57,8 +55,7 @@
                                 <br>
                                 <div class="d-flex justify-content-between align-items-center">                                  
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary" 
-                                            onclick="window.location.href=`#`" >
+                                        <button href="{{ route('admin.news.createNews')}}" type="button" class="btn btn-sm btn-outline-secondary">
                                             {{-- onclick="window.location.href={{route('admin.news.edit', ['id'=>$newsItem->id])}}" > --}}
                                             Удалить
                                         </button>
@@ -67,13 +64,10 @@
                                 <br>                              
                                 <div class="d-flex justify-content-between align-items-center">                                  
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary" 
-                                            onclick="window.location.href=`#`" >
-                                            {{-- onclick="window.location.href={{route('admin.news.edit', ['id'=>$newsItem->id])}}" > --}}
+                                        <a href="{{ route('admin.news.edit', ['news'=>$newsItem->id])}}" type="button" class="btn btn-sm btn-outline-secondary">
                                             Редактировать
-                                        </button>
+                                        </a>
                                     </div>
-                                    
                                 </div>
                                 <br>
                                 <small class="text-muted">{{now('Europe/Moscow')}}</small> 
@@ -81,6 +75,8 @@
                         </div>
                 @endforeach
             </div>
+            <div>{{$news->Links()}}</div>
         </div>
+        
     </div>
 @endsection

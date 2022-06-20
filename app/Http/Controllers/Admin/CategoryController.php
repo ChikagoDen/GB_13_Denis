@@ -13,13 +13,17 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $model=new Category();
-        $news=$model->getCategori();
-       return view("admin/news/index", ['news'=>$news]);
+    // public function index()
+    // {
+    //     $model=new Category();
+    //     $news=$model->getCategori();
+    //    return view("admin/news/index", ['news'=>$news]);
+    // }
+    public function index(){
+        $news=Category::query()->select(Category::$avaribel)->get();//Category::$avaribel из модели
+        
+        return view("admin/news/index", ['news'=>$news]);
     }
-    
     /**
      * Show the form for creating a new resource.
      *
