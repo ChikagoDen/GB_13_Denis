@@ -64,6 +64,7 @@
                                 <br>                              
                                 <div class="d-flex justify-content-between align-items-center">                                  
                                     <div class="btn-group">
+                                        {{-- {{dd($newsItem)}} --}}
                                         <a href="{{ route('admin.news.edit', ['news'=>$newsItem->id])}}" type="button" class="btn btn-sm btn-outline-secondary">
                                             Редактировать
                                         </a>
@@ -74,9 +75,9 @@
                             </div>
                         </div>
                 @endforeach
+                
             </div>
-            <div>{{$news->Links()}}</div>
         </div>
-        
     </div>
+    {{$news->links()}}
 @endsection

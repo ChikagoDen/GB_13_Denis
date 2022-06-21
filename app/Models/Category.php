@@ -13,7 +13,7 @@ class Category extends Model
 //все новости категории
     public function newsCategory():HasMany
     {
-        return $this->hasMany(News::class,'fk_category_id','id');
+        return $this->hasMany(News::class,'fk_categori_id','id');
     }
 
 

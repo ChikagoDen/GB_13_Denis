@@ -20,11 +20,12 @@ class CategoryController extends Controller
     //    return view("admin/news/index", ['news'=>$news]);
     // }
     public function index(){
-        $news=Category::query()->select(Category::$avaribel)->get();//Category::$avaribel из модели
-        
-        return view("admin/news/index", ['news'=>$news]);
+        // $categorys=Category::query()->select(Category::$avaribel)->get();//Category::$avaribel из модели
+        $categorys=Category::with('newsCategory')->paginate(5);
+        return view("admin/news/index", ['categorys'=>$categorys]);
     }
-    /**
+
+   /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -48,10 +49,10 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  Category  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Category $id)
     {
         //
     }

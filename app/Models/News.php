@@ -49,9 +49,8 @@ class News extends Model
     //     return DB::selectOne("SELECT * FROM ($this->table) WHERE id = :id",  ["id"=>$id]);
     // }
 
-    //категория новости
-    public function category():BelongsTo
+    public function categoryNews():BelongsTo
     {
-        return $this->belongsTo(Category::class,'id','fk_category_id');
+        return $this->belongsTo(Category::class,'fk_categori_id','id');
     }
 }

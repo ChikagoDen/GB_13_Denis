@@ -15,25 +15,26 @@ class NewsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    
+    public function index(int $id)
     {
-
+        $news=News::with('categoryNews')->where('fk_categori_id','=',$id)->paginate(2);
+        return view($view = 'admin/news/news', ['news'=>$news]);
     } 
     public function CategoryShow(string $category)
     {
         // $model=new News();
         // $news=$model->getNews($category);
-    
         $temp=Category::query()->select('id')->where('Title',$category.'.')->get();
          foreach ($temp as $newss) {
-          
           } 
-        $news=News::query()->select()
+         
+        $news=News::with('categoryNews')
+        ->select()
         ->where('fk_categori_id','=',$newss->id)
         // ->get();
         // ->toSql(); dd($news);
         ->paginate(2);
-            
         return view($view = 'admin/news/news', ['news'=>$news, 'category'=>$category]);
     }
     /**
