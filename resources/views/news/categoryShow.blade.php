@@ -1,9 +1,9 @@
 @extends('layouts.main')
 @section('include')
-    @include('inc.include', ['name'=>'Мы все знаем про '.$category])
+    @include('inc.include', ['name'=>'Мы все знаем про '.$category->Title])
 @endsection
 @section('title')
-    Категория: <?=$category?>
+    Категория: {{$category->Title}}
 @endsection
 @section('perehod')
 @show 
@@ -19,7 +19,7 @@
     </div>
     <hr>
     <h3>
-        Категория - {{$category}}
+        Категория - {{$category->Title}}
     </h3>
     <hr>
     <div class="album py-5 bg-light">
@@ -43,10 +43,6 @@
                                     <p>Автор: {{$item->Avtor}}</p>                            
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
-                                        {{-- <button type="button" class="btn btn-sm btn-outline-secondary" 
-                                            onclick="window.location.href=`{{route('news.show', ['id'=>$newsItem[$i]['id']])}}`" >
-                                                Посмотреть
-                                        </button> --}}
                                         <button type="button" class="btn btn-sm btn-outline-secondary" onclick="window.location.href = '{{route ( 'news.show', ['id'=>$item->id])}}';">Посмотреть</button>
                                     </div>
                                     <small class="text-muted">{{now('Europe/Moscow')}}</small>
@@ -58,6 +54,7 @@
                 @endforelse
             </div>
         </div>
+        {{$news->links()}}
     </div>
 @endsection
 

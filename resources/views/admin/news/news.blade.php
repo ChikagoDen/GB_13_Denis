@@ -1,9 +1,9 @@
 @extends('layouts.main')
 @section('include')
-    @include('inc.include', ['name'=>'Мы все знаем про '.$category])
+    @include('inc.include', ['name'=>'Мы все знаем про '.$category->Title])
 @endsection
 @section('title')
-    Админ: категория - <?=$category?>
+    Админ: категория - {{$category->Title}}
 @endsection
 @section('perehod')
 @show 
@@ -13,10 +13,14 @@
             Вернутся на главную
         </a>
     </div>
-    <hr>
+    <hr> 
+    <div class="btn-group me-2">
+        <a href="{{ route('admin.category.delete', ['id'=>$category])}}" type="button" class="btn btn-sm btn-outline-secondary">Удалить категорию</a>
+    </div>
     <h3>
-        Категория - {{$category}}
+        Категория - {{$category->Title}}
     </h3>
+   
     <div class="btn-toolbar mb-2 mb-md-0">
         <div class="btn-group me-2">
             <a href="{{ route('admin.news.createNews')}}" type="button" class="btn btn-sm btn-outline-secondary">Добавить статью</a>
@@ -47,7 +51,6 @@
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-sm btn-outline-secondary" 
                                             onclick="window.location.href='{{route('news.show', ['id'=>$newsItem->id])}}'" >
-                                            {{-- onclick="window.location.href = '{{route ( 'news.show', ['id'=>$item->id])}}';" --}}
                                                 Посмотреть 
                                         </button>
                                     </div>
@@ -55,16 +58,14 @@
                                 <br>
                                 <div class="d-flex justify-content-between align-items-center">                                  
                                     <div class="btn-group">
-                                        <button href="{{ route('admin.news.createNews')}}" type="button" class="btn btn-sm btn-outline-secondary">
-                                            {{-- onclick="window.location.href={{route('admin.news.edit', ['id'=>$newsItem->id])}}" > --}}
+                                        <a href="{{ route('admin.news.delete', ['id'=>$newsItem])}}" type="button" class="btn btn-sm btn-outline-secondary">
                                             Удалить
-                                        </button>
+                                        </a>
                                     </div>
                                 </div>  
                                 <br>                              
                                 <div class="d-flex justify-content-between align-items-center">                                  
                                     <div class="btn-group">
-                                        {{-- {{dd($newsItem)}} --}}
                                         <a href="{{ route('admin.news.edit', ['news'=>$newsItem->id])}}" type="button" class="btn btn-sm btn-outline-secondary">
                                             Редактировать
                                         </a>

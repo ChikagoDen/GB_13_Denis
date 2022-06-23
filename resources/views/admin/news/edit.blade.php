@@ -24,7 +24,6 @@
     <hr>
     {{-- {{dd($news)}} --}}
     <form method="post" action="{{route('admin.news.update',['news'=>$news])}}">
-        
         @csrf
         @method('put');
         <label for="nameField">Заголовок</label><br>

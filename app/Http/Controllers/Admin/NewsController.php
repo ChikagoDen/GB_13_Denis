@@ -16,27 +16,14 @@ class NewsController extends Controller
      * @return \Illuminate\Http\Response
      */
     
-    public function index(int $id)
+    public function index(Category $category)
     {
-        $news=News::with('categoryNews')->where('fk_categori_id','=',$id)->paginate(2);
-        return view($view = 'admin/news/news', ['news'=>$news]);
-    } 
-    public function CategoryShow(string $category)
-    {
-        // $model=new News();
-        // $news=$model->getNews($category);
-        $temp=Category::query()->select('id')->where('Title',$category.'.')->get();
-         foreach ($temp as $newss) {
-          } 
-         
         $news=News::with('categoryNews')
         ->select()
-        ->where('fk_categori_id','=',$newss->id)
-        // ->get();
-        // ->toSql(); dd($news);
+        ->where('fk_categori_id','=',$category->id)
         ->paginate(2);
         return view($view = 'admin/news/news', ['news'=>$news, 'category'=>$category]);
-    }
+    } 
     /**
      * Show the form for creating a new resource.
      *
@@ -56,17 +43,12 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        
-        // $request->validate(['Title'=>['required','string','min:5']]);
-        // $data=$request->all();
-
         $data=$request->only(['fk_categori_id','Title','Avtor','Status','Descriptoin']);
         $created=News::create($data);
         if($created){
             return redirect()->route('admin.category.index')
             ->with('success','Запись успешно добавлена');
         }
-
         return  back()->with('error','неполучилось')->withInput();
     }
 
@@ -112,13 +94,31 @@ class NewsController extends Controller
     {
         // $request->only(['fk_categori_id','Title','Avtor','Status','Descriptoin']);
         // $news->Title='blabla';
-        // dd($news);
         $newsUpdate=$news->fill($request->only(['fk_categori_id','Title','Avtor','Status','Descriptoin']))->save();
         if($newsUpdate){
             return redirect()->route('admin.category.index')
             ->with('success','Запись успешно отредактирована');
         }
-
+        return  back()->with('error','неполучилось')->withInput();
+    }
+        // удаление через DB
+    // public function delete(int $id)
+    // {
+    //     $model=new News();
+    //     $news=$model->deleteNews($id);
+    //     if($news){
+    //         return redirect()->route('admin.category.index')
+    //         ->with('success','Запись успешно удалена');
+    //     }
+    //     return  back()->with('error','неполучилось')->withInput();
+    // }
+    public function delete(News $id)
+    {
+        $id->delete();
+        if($id){
+            return redirect()->route('admin.category.index')
+            ->with('success','Запись успешно удалена');
+        }
         return  back()->with('error','неполучилось')->withInput();
     }
     /**

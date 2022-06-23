@@ -9,25 +9,8 @@ use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
-    // public function index()
-    // {
-    //     $model=new Category();
-    //     $news=$model->getCategori();
-    //      dd($news);
-    //     return view($view = 'news/category', ['news'=>$news]);
-    // }
-
-
-   public function index(){
-        $news=Category::query()->select(Category::$avaribel)->get();//Category::$avaribel из модели
-        return view($view = 'news/category', ['news'=>$news]);
-    }
-    public function CategoryShow(string $category)
-    {
-        
-        $model=new News();
-        $news=$model->getNews($category);
-// dd( $news);
-        return view($view = 'news/categoryShow', ['news'=>$news, 'category'=>$category]);
+    public function index(){
+        $categorys=Category::with('newsCategory')->paginate(5);
+        return view("news/category", ['categorys'=>$categorys]);
     }
 }

@@ -14,15 +14,17 @@
     <hr>
     <h3> Категории</h3>
     <br>
-    @foreach($news as $newsItemKey)
+    @foreach($categorys as $category)
     <div>
         <h2>
-            <a href="{{route('news.categoryShow', ['category'=>Str::replaceLast('.', '', $newsItemKey->Title) ])}}">
-                <?=$newsItemKey->Title?>
+            <a href="{{route('news.categoryShow', ['category'=>$category])}}">
+                <?=$category->Title?>
             </a>
         </h2>
+        <div> <p>Количество новостей {{$category->newsCategory->count()}}</p></div>
     </div>
 @endforeach
+{{$categorys->links()}}
 @endsection
 @section('perehod')
 @endsection

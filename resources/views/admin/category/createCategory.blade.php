@@ -17,12 +17,13 @@
         Добавить категорию. 
     </h3>
     <hr>
-    <form method="post" action="/im/">
+    <form method="post" action="{{route('admin.category.store')}}">
+        @csrf
         <label for="title">Название категории</label><br>
-        <input type="text" id="title" size="30" name="name" value="{{old('title')}}">
+        <input type="text" id="title" size="30" name="Title" value="{{old('title')}}">
         <br>
         <label for="discription">Описание категории</label><br>
-        <input type="text" id="discription" size="30" name="name" value="{{old('discription')}}">
+        <input type="text" id="discription" size="30" name="Discription" value="{{old('discription')}}">
         <br>        
         <small class="text-muted">{{now('Europe/Moscow')}}</small>
         <br><br>

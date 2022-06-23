@@ -43,7 +43,14 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data=$request->only(['Title','Descriptoin']);
+        $created=Category::create($data);
+        if($created){
+            return redirect()->route('admin.category.index')
+            ->with('success','Запись успешно добавлена');
+        }
+
+        return  back()->with('error','неполучилось')->withInput();
     }
 
     /**
@@ -89,5 +96,18 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function delete(Category $id)
+    {
+        $category=Category::with('newsCategory')
+        ->select()
+        ->where('id','=',$id->id)
+        ->delete();
+        if($category){
+            return redirect()->route('admin.category.index')
+            ->with('success','Запись успешно удалена');
+        }
+        return  back()->with('error','неполучилось')->withInput();
     }
 }
