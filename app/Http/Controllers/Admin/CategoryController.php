@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -12,19 +13,26 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        return "index CategoryController";
+    // public function index()
+    // {
+    //     $model=new Category();
+    //     $news=$model->getCategori();
+    //    return view("admin/news/index", ['news'=>$news]);
+    // }
+    public function index(){
+        // $categorys=Category::query()->select(Category::$avaribel)->get();//Category::$avaribel из модели
+        $categorys=Category::with('newsCategory')->paginate(5);
+        return view("admin/news/index", ['categorys'=>$categorys]);
     }
 
-    /**
+   /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        //
+        return view('admin.category.createCategory');
     }
 
     /**
@@ -35,16 +43,23 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data=$request->only(['Title','Descriptoin']);
+        $created=Category::create($data);
+        if($created){
+            return redirect()->route('admin.category.index')
+            ->with('success','Запись успешно добавлена');
+        }
+
+        return  back()->with('error','неполучилось')->withInput();
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  Category  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Category $id)
     {
         //
     }
@@ -81,5 +96,18 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function delete(Category $id)
+    {
+        $category=Category::with('newsCategory')
+        ->select()
+        ->where('id','=',$id->id)
+        ->delete();
+        if($category){
+            return redirect()->route('admin.category.index')
+            ->with('success','Запись успешно удалена');
+        }
+        return  back()->with('error','неполучилось')->withInput();
     }
 }
