@@ -16,13 +16,7 @@
     <h3>
         Редактировать статью. 
     </h3>
-    {{-- <div class="btn-toolbar mb-2 mb-md-0">
-        <div class="btn-group me-2">
-            <a href="{{ route('admin.news.createNews')}}" type="button" class="btn btn-sm btn-outline-secondary">Добавить статью</a>
-        </div>
-    </div> --}}
     <hr>
-    {{-- {{dd($news)}} --}}
     <form method="post" action="{{route('admin.news.update',['news'=>$news])}}">
         @csrf
         @method('put');

@@ -26,32 +26,22 @@
     </style>
   </head>
   <body>
-
     <x-header></x-header>
-
     <main>
-
         @section('include')
              @include('inc.include', ['name'=>'Наши сплетни самые правдивые!!!'])
         @show
-
         <link href ="{{ asset ('css/index.css')}}" rel="stylesheet" >
-        
         @section('perehod')
             <a href="<?=route('news.index')?>">
                 Вернутся на главную
             </a>
         @show 
-
         <div>
-            
           @yield('content')
-
         </div>
     </main>
-
     <x-foter></x-foter>
-    
     <script src="{{ asset ('js/bootstrap.bundle.min.js') }}"></script>
   </body>
 </html>

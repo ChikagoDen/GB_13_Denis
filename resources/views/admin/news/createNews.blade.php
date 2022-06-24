@@ -8,13 +8,6 @@
 @show 
 @section('content')
 @include('inc.message')
-{{-- @if($errors->any())
-    @foreach($errors->all() as $error)
-        <x-alert type="danger" :messge="$error"></x-alert>
-    @endforeach
-@endif --}}
-
-
     <div>
         <a href="{{route('admin.category.index')}}">
             Вернутся на главную

@@ -21,8 +21,4 @@ class Category extends Model
     {
         return $this->hasMany(News::class,'fk_categori_id','id');
     }
-    // public function getCategori():array
-    // {
-    //     return DB::select("SELECT id,title,discription FROM ($this->table)");
-    // }
 }

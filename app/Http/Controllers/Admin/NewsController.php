@@ -86,14 +86,9 @@ class NewsController extends Controller
      * @param  News  $news
      * @return \Illuminate\Http\Response
      */
-    // public function update(Request $request, $id)
-    // {
-    //     //
-    // }
+
     public function update(Request $request,News $news)
     {
-        // $request->only(['fk_categori_id','Title','Avtor','Status','Descriptoin']);
-        // $news->Title='blabla';
         $newsUpdate=$news->fill($request->only(['fk_categori_id','Title','Avtor','Status','Descriptoin']))->save();
         if($newsUpdate){
             return redirect()->route('admin.category.index')
@@ -101,17 +96,6 @@ class NewsController extends Controller
         }
         return  back()->with('error','неполучилось')->withInput();
     }
-        // удаление через DB
-    // public function delete(int $id)
-    // {
-    //     $model=new News();
-    //     $news=$model->deleteNews($id);
-    //     if($news){
-    //         return redirect()->route('admin.category.index')
-    //         ->with('success','Запись успешно удалена');
-    //     }
-    //     return  back()->with('error','неполучилось')->withInput();
-    // }
     public function delete(News $id)
     {
         $id->delete();
