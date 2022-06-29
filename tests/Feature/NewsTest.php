@@ -2,12 +2,15 @@
 
 namespace Tests\Feature;
 
+use App\Models\Category;
+use App\Models\News;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class NewsTest extends TestCase
 {
+    // use RefreshDatabase;
     /**
      * A basic feature test example.
      *
@@ -33,12 +36,12 @@ class NewsTest extends TestCase
     }
     public function testNewsShow()
     {
-        $response=$this->get(route("news.show", ["id"=>mt_rand(1,5)]));
+        $response=$this->get(route("news.show", ["id"=>mt_rand(1,4)]));
         $response->assertStatus(200);
     } 
     public function testCategoryShow()
     {
-        $response=$this->get(route("news.categoryShow", ["category"=>"Спорт"])); //проверка на категории
+        $response=$this->get(route("news.categoryShow", ["category"=>"Категория 1."])); //проверка на категории
         $response->assertStatus(200);
     } 
     
@@ -63,27 +66,30 @@ class NewsTest extends TestCase
         $response->assertStatus(200);
     }
  
-    public function testNewsAdminAvalibel()
-    {
-        $response = $this->get('/admin/news');
-
-        $response->assertStatus(200);
-    }
-        public function testNewsAdminShow()
-    {
-        $response=$this->get(route("news.show", ["id"=>mt_rand(1,5)]));
-        $response->assertStatus(200);
-    }
- 
     public function testNewsAdminCreated()
     {
-        $responseData=[
-            'name'=>'test title',
-            'avtor'=>'Den'
-        ];
-        $response=$this->post(route('admin.news.store'), $responseData);
-        $response ->assertJson($responseData)
-                  ->assertStatus(200);
-    }
+        $category=Category::factory()->create();
+        $responseData =News::factory()->definition();
 
+        $responseData=$responseData+['fk_categori_id'=>$category->id];
+        // $responseData=[
+        //     // 'fk_categori_id'=>3,
+        //     'Title'=>'test title',
+        //     'Avtor'=>'Denver',
+        //     'Status'=>'Черновик',
+        //     'Discription'=>'Bllaa bla bla ',
+        //     'DiscriptionCorotco'=>'berwjndfkjn',
+            
+        // ];
+        $response=$this->post(route('admin.news.store'), $responseData);
+        $response->assertStatus(302);
+    }
+    public function testCategoryAdminCreated()
+    {
+        $category=Category::factory()->definition();
+
+        $responseData=$category;
+        $response=$this->post(route('admin.category.store'), $responseData);
+        $response->assertStatus(302);
+    }
 }

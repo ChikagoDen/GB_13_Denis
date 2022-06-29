@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Http\Requests\Category\CreateCategory;
 
 class CategoryController extends Controller
 {
@@ -13,12 +14,6 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    // public function index()
-    // {
-    //     $model=new Category();
-    //     $news=$model->getCategori();
-    //    return view("admin/news/index", ['news'=>$news]);
-    // }
     public function index(){
         // $categorys=Category::query()->select(Category::$avaribel)->get();//Category::$avaribel из модели
         $categorys=Category::with('newsCategory')->paginate(5);
@@ -41,9 +36,10 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateCategory $request)
     {
-        $data=$request->only(['Title','Descriptoin']);
+        // $data=$request->only(['Title','Descriptoin']);
+        $data=$request->validated();
         $created=Category::create($data);
         if($created){
             return redirect()->route('admin.category.index')

@@ -36,8 +36,6 @@ Route :: get ( '/index' ,[ StartController ::class, 'index' ])-> name ( $name = 
 Route :: get ( '/autorize' ,[ AutorizeController ::class, 'index' ])-> name ( $name = 'news.autorize' );
 Route :: get ( '/category' ,[ CategoryController ::class, 'index' ])-> name ( $name = 'news.category' );
 Route :: get ( '/category/{category}' , [ NewsController ::class, 'index' ])-> name ( $name = 'news.categoryShow' );
-    //не работает, модель приходит пустая
-    Route :: get ( '/news/{id}' , [ NewsController ::class, 'show' ])
-    // ->where('id','\d+') //id должно быть числом
-    ->where('news','\d+') //news -модель  должно быть числом
-    ->name ( $name = 'news.show' );
+Route :: get ( '/news/{id}' , [ NewsController ::class, 'show' ])
+                                                                ->where('id','\d+') //news -модель  должно быть числом
+                                                                ->name ( $name = 'news.show' );

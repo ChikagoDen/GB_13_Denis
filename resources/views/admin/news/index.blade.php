@@ -22,12 +22,10 @@
   
     <div>
         <h2>
-          {{-- <a href="{{route('admin.news.categoryShow', ['category'=>Str::replaceLast('.', '', $category->Title) ])}}"> --}}
           <a href="{{route('admin.news.categoryShow', ['category'=>$category])}}">  
             <?=$category->Title?>
           </a>
         </h2>
-        {{-- <div> <p>Количество новостей {{$category->newsCategory()->count()}}</p></div>//много запросов --}}
         <div> <p>Количество новостей {{$category->newsCategory->count()}}</p></div>
     </div>
   @endforeach

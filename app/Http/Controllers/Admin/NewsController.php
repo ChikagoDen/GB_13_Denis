@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\News\CreateRequest;
+use App\Http\Requests\News\EditRequest;
 use App\Models\Category;
 use App\Models\News;
-use Illuminate\Http\Request;
+// use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\ValidationException;
 
 class NewsController extends Controller
 {
@@ -38,12 +41,20 @@ class NewsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\CreateRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateRequest $request)
     {
-        $data=$request->only(['fk_categori_id','Title','Avtor','Status','Descriptoin']);
+        // $request->validate(['Title'=>['required','string','min:5']]);
+        // try{
+        //    $this->validate($request,['Title'=>['required','string','min:5']]);
+        // }
+        // catch(ValidationException $e){
+        //     dd($e->validator->getMessageBag()->getMessages());
+        // }
+        
+        $data=$request->validated();
         $created=News::create($data);
         if($created){
             return redirect()->route('admin.category.index')
@@ -86,32 +97,19 @@ class NewsController extends Controller
      * @param  News  $news
      * @return \Illuminate\Http\Response
      */
-    // public function update(Request $request, $id)
-    // {
-    //     //
-    // }
-    public function update(Request $request,News $news)
+
+    public function update( EditRequest $request,News $news)
     {
-        // $request->only(['fk_categori_id','Title','Avtor','Status','Descriptoin']);
-        // $news->Title='blabla';
-        $newsUpdate=$news->fill($request->only(['fk_categori_id','Title','Avtor','Status','Descriptoin']))->save();
+        // $request->validated(); то же что и $request->only(['fk_categori_id','Title','Avtor','Status','Discription','DiscriptionCorotco'])
+        $newsUpdate=$news->fill($request->only(['fk_categori_id','Title','Avtor','Status','Discription','DiscriptionCorotco']))->save();
+        // $newsUpdate=$news->fill($request->validated())->save();//в валидаторе должны быть прописаны все поля
+        
         if($newsUpdate){
             return redirect()->route('admin.category.index')
             ->with('success','Запись успешно отредактирована');
         }
         return  back()->with('error','неполучилось')->withInput();
     }
-        // удаление через DB
-    // public function delete(int $id)
-    // {
-    //     $model=new News();
-    //     $news=$model->deleteNews($id);
-    //     if($news){
-    //         return redirect()->route('admin.category.index')
-    //         ->with('success','Запись успешно удалена');
-    //     }
-    //     return  back()->with('error','неполучилось')->withInput();
-    // }
     public function delete(News $id)
     {
         $id->delete();

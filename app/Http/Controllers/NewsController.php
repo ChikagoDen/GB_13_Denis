@@ -20,26 +20,6 @@ class NewsController extends Controller
     }    
     public function show(News $id) {
         $news=News::findOrFail($id->id);
-        return view('news/show', ['newsItem'=>$news]);
+        return view('news/show', ['news'=>$news]);
     }
-    // public function show(int $id)
-    // {
-    //     // if($id>5)
-    //     //     {
-    //     //         abort($code=404);
-    //     //     }
-    //     $model = new News();
-    //     $news = $model->getNewsById($id);
-    //     return view($view = 'news/show', ['newsItem'=>$news]);
-    // }
-    // public function show(int $id) {
-    //     $news=News::findOrFail($id);
-    //     return view($view = 'news/show', ['newsItem'=>$news]);
-    // }
-    // не работает модель приходит пустая
-    // public function show(News $news) {
-    //     return view($view = 'news/show', ['newsItem'=>$news]);
-    // }
-
-
 }
