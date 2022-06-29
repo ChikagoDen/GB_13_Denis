@@ -13,7 +13,7 @@ class Category extends Model
 
     protected $table="categories";
     public static $avaribel=['id','Title','discription' ];
-    protected $fillable = ['fk_categori_id','Title','Avtor','Status','Descriptoin'];//поля которые хотим заполнять лучше его использовать
+    protected $fillable = ['fk_categori_id','Title','Avtor','Status','Discription'];//поля которые хотим заполнять лучше его использовать
     protected $guarded =['id'];//поля которые не нужно обновлять
 
     //все новости категории

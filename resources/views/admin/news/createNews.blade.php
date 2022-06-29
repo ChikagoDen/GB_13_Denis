@@ -17,6 +17,7 @@
     <h3>
         Новая статья. 
     </h3>
+    @include('inc.message')
     <hr>
     <form method="post" action="{{route('admin.news.store')}}">
         @csrf
@@ -43,8 +44,8 @@
         <label for="status">Статус</label><br>
         <select id="status" name="Status">
             <option @if(old('status')==="Черновик") selected @endif>Черновик</option>
-            <option @if(old('status')==="Активный") selected @endif>>Активный</option>
-            <option @if(old('status')==="Закрыт") selected @endif>>Закрыт</option>
+            <option @if(old('status')==="Активный") selected @endif>Активный</option>
+            <option @if(old('status')==="Закрыт") selected @endif>Закрыт</option>
         </select>
         <br>        
         <small class="text-muted">{{now('Europe/Moscow')}}</small>

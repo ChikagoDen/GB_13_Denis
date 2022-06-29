@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 class News extends Model
 {
     use HasFactory;
-    protected $fillable = ['fk_categori_id','Title','Avtor','Status','Descriptoin','DescriptoinCorotco'];
+    protected $fillable = ['fk_categori_id','Title','Avtor','Status','Discription','DiscriptionCorotco'];//поля которые хотим заполнять лучше его использовать
     protected $table="news";
 
     public function categoryNews():BelongsTo

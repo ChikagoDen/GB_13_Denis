@@ -13,6 +13,7 @@
         </a>
     </div>
     <hr>
+    @include('inc.message')
     <h3>
         Редактировать статью. 
     </h3>
@@ -22,21 +23,24 @@
         @method('put');
         <label for="nameField">Заголовок</label><br>
         <input type="text" id="nameField" size="30" name="Title" value="{{$news->Title}}">
+        @error("Title")<strong style="color: red">{{$message}}</strong>@enderror
         <br>
-        <label for="messageField">Статья</label><br>
-        <textarea name="Discription" id="messageField" cols="50" rows="5" >{{$news->Discription}}</textarea>
+        <label for="Discription">Статья</label><br>
+        <textarea name="Discription" id="Discription">{{$news->Discription}}</textarea>
+        @error("Discription" )<strong style="color: red">{{$message}}</strong>@enderror
         <br>
         <label for="mesField">Краткое описание статьи</label><br>
-        <textarea name="DiscriptionCorotco" id="mesField" cols="50" rows="2">{!!$news->DiscriptionCorotco!!}</textarea>
+        <textarea name="DiscriptionCorotco" id="mesField" >{!!$news->DiscriptionCorotco!!}</textarea>
         <br>
         <label for="avtor">Автор</label><br>
-        <input type="text" id="avtor" size="30" name="avtor" value="{{$news->Avtor}}">
+        <input type="text" id="avtor" size="30" name="Avtor" value="{{$news->Avtor}}">
+        @error("Avtor")<strong style="color: red">{{$message}}</strong>@enderror
         <br>
         <label for="status">Статус</label><br>
-        <select id="status" name="status">
+        <select id="status" name="Status">
             <option @if($news->Status ==="Черновик") selected @endif>Черновик</option>
-            <option @if($news->Status ==="Активный") selected @endif>>Активный</option>
-            <option @if($news->Status ==="Закрыт") selected @endif>>Закрыт</option>
+            <option @if($news->Status ==="Активный") selected @endif>Активный</option>
+            <option @if($news->Status ==="Закрыт") selected @endif>Закрыт</option>
         </select>
         <br>        
         <small class="text-muted">{{now('Europe/Moscow')}}</small>
