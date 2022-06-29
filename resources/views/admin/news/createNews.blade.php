@@ -17,7 +17,6 @@
     <h3>
         Новая статья. 
     </h3>
-    @include('inc.message')
     <hr>
     <form method="post" action="{{route('admin.news.store')}}">
         @csrf

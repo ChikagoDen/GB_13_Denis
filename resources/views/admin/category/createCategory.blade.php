@@ -16,6 +16,7 @@
     <h3>
         Добавить категорию. 
     </h3>
+    @include('inc.message')
     <hr>
     <form method="post" action="{{route('admin.category.store')}}">
         @csrf

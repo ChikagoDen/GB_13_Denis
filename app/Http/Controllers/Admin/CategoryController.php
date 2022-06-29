@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Http\Requests\Category\CreateCategory;
 
 class CategoryController extends Controller
 {
@@ -35,9 +36,10 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateCategory $request)
     {
-        $data=$request->only(['Title','Descriptoin']);
+        // $data=$request->only(['Title','Descriptoin']);
+        $data=$request->validated();
         $created=Category::create($data);
         if($created){
             return redirect()->route('admin.category.index')

@@ -82,8 +82,14 @@ class NewsTest extends TestCase
             
         // ];
         $response=$this->post(route('admin.news.store'), $responseData);
-        // $response->assertJson($responseData);
         $response->assertStatus(302);
     }
+    public function testCategoryAdminCreated()
+    {
+        $category=Category::factory()->definition();
 
+        $responseData=$category;
+        $response=$this->post(route('admin.category.store'), $responseData);
+        $response->assertStatus(302);
+    }
 }

@@ -25,7 +25,11 @@ class EditRequest extends FormRequest
     {
         return [
             'Title'=>['required','string','min:5'],
-            'Avtor'=>['required','string','min:5']
+            'Avtor'=>['required','string','min:5'],
+            'fk_categori_id'=>['integer'],
+            'Status'=>['required','string','min:5'],
+            'Discription'=>['required','string','min:5'],
+            'DiscriptionCorotco'=>['required','string','min:5']
         ];
     }
     public function messages()
