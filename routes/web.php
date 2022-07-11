@@ -39,3 +39,6 @@ Route :: get ( '/category/{category}' , [ NewsController ::class, 'index' ])-> n
 Route :: get ( '/news/{id}' , [ NewsController ::class, 'show' ])
                                                                 ->where('id','\d+') //news -модель  должно быть числом
                                                                 ->name ( $name = 'news.show' );
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
