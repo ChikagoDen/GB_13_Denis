@@ -9,8 +9,8 @@
 @section('content')
 @include('inc.message')
     <div>
-        <a href="{{route('admin.category.index')}}">
-            Вернутся на главную
+        <a href="{{route('admin.index')}}">
+            Выбрать категорию
         </a>
     </div>
     <hr>

@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\News;
-use Illuminate\Http\Request;
-use phpDocumentor\Reflection\Types\This;
-use Illuminate\Database\Eloquent\Model;
+// use Illuminate\Http\Request;
+// use phpDocumentor\Reflection\Types\This;
+// use Illuminate\Database\Eloquent\Model;
 
 class NewsController extends Controller
 {

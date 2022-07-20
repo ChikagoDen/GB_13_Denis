@@ -7,7 +7,7 @@
 @endsection
 @section('content')
     <div>
-        <a href="<?=route('news.index')?>">
+        <a href="{{route('news.index')}}">
             Вернутся на главную
         </a>
     </div>

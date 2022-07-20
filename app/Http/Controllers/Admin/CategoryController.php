@@ -14,12 +14,11 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    
     public function index(){
-        // $categorys=Category::query()->select(Category::$avaribel)->get();//Category::$avaribel из модели
         $categorys=Category::with('newsCategory')->paginate(5);
         return view("admin/news/index", ['categorys'=>$categorys]);
     }
-
    /**
      * Show the form for creating a new resource.
      *
@@ -38,14 +37,12 @@ class CategoryController extends Controller
      */
     public function store(CreateCategory $request)
     {
-        // $data=$request->only(['Title','Descriptoin']);
         $data=$request->validated();
         $created=Category::create($data);
         if($created){
-            return redirect()->route('admin.category.index')
+            return redirect()->route('admin.index')
             ->with('success','Запись успешно добавлена');
         }
-
         return  back()->with('error','неполучилось')->withInput();
     }
 
@@ -101,7 +98,7 @@ class CategoryController extends Controller
         ->where('id','=',$id->id)
         ->delete();
         if($category){
-            return redirect()->route('admin.category.index')
+            return redirect()->route('admin.index')
             ->with('success','Запись успешно удалена');
         }
         return  back()->with('error','неполучилось')->withInput();

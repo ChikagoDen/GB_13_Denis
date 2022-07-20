@@ -8,7 +8,7 @@
 @show 
 @section('content')
     <div>
-        <a href="{{route('admin.category.index')}}">
+        <a href="{{route('admin.index')}}">
             Вернутся на главную
         </a>
     </div>

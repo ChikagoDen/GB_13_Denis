@@ -7,9 +7,9 @@ use App\Http\Requests\News\CreateRequest;
 use App\Http\Requests\News\EditRequest;
 use App\Models\Category;
 use App\Models\News;
-// use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Validation\ValidationException;
+// // use Illuminate\Http\Request;
+// use Illuminate\Support\Facades\Storage;
+// use Illuminate\Validation\ValidationException;
 
 class NewsController extends Controller
 {
@@ -46,18 +46,10 @@ class NewsController extends Controller
      */
     public function store(CreateRequest $request)
     {
-        // $request->validate(['Title'=>['required','string','min:5']]);
-        // try{
-        //    $this->validate($request,['Title'=>['required','string','min:5']]);
-        // }
-        // catch(ValidationException $e){
-        //     dd($e->validator->getMessageBag()->getMessages());
-        // }
-        
         $data=$request->validated();
         $created=News::create($data);
         if($created){
-            return redirect()->route('admin.category.index')
+            return redirect()->route('admin.index')
             ->with('success','Запись успешно добавлена');
         }
         return  back()->with('error','неполучилось')->withInput();
@@ -100,12 +92,9 @@ class NewsController extends Controller
 
     public function update( EditRequest $request,News $news)
     {
-        // $request->validated(); то же что и $request->only(['fk_categori_id','Title','Avtor','Status','Discription','DiscriptionCorotco'])
         $newsUpdate=$news->fill($request->only(['fk_categori_id','Title','Avtor','Status','Discription','DiscriptionCorotco']))->save();
-        // $newsUpdate=$news->fill($request->validated())->save();//в валидаторе должны быть прописаны все поля
-        
         if($newsUpdate){
-            return redirect()->route('admin.category.index')
+            return redirect()->route('admin.index')
             ->with('success','Запись успешно отредактирована');
         }
         return  back()->with('error','неполучилось')->withInput();
@@ -114,7 +103,7 @@ class NewsController extends Controller
     {
         $id->delete();
         if($id){
-            return redirect()->route('admin.category.index')
+            return redirect()->route('admin.index')
             ->with('success','Запись успешно удалена');
         }
         return  back()->with('error','неполучилось')->withInput();

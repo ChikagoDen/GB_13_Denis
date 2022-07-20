@@ -34,11 +34,16 @@
         @show
         <link href ="{{ asset ('css/index.css')}}" rel="stylesheet" >
         <div class = "body-1">
-            @section('content')
+            @if ((Auth::user()&&Auth::user()->is_admin))
+                  <a href = "{{route('admin.index')}}">
+                    <h3> Категории новостей</h3>
+            @else
+               @section('content')
                 <a href = "{{route('news.category')}}">
                     <h3> Категории новостей</h3>
                 </a> 
-            @show
+              @show 
+            @endif
         </div>  
         <br>
         <div class = "body-2">    
