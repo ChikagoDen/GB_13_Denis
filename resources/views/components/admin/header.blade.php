@@ -6,8 +6,18 @@
   </button>
   <input class="form-control form-control-dark w-100" type="text" placeholder="Поиск" aria-label="Поиск">
   <div class="navbar-nav">
-    <div class="nav-item text-nowrap">
-      <a class="nav-link px-3" href="#">Выход</a>
+    <div class="nav-item text-nowrap" >
+      @if (Route::has('login'))
+                @auth
+                    <a href="{{ route('account.logout')}}" class="text-sm text-gray-700 dark:text-gray-500 underline">Выйти</a>
+                @else
+                    <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Залогинится</a>
+      
+                    @if (Route::has('register'))
+                        <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Регистрация</a>
+                    @endif
+                @endauth
+            @endif
     </div>
   </div>
 </header>

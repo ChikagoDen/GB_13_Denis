@@ -3,6 +3,7 @@
 use App\Http\Controllers\Account\IndexController as AccountController;
 use App\Http\Controllers\Admin\NewsController as AdminNewsController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
+use App\Http\Controllers\Admin\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\CategoryController;
@@ -42,10 +43,19 @@ Route::group(['middleware'=>'auth'],function(){
 
     Route :: get ( 'admin/category' , [ AdminCategoryController :: class, 'index' ])->middleware('admin')-> name ( $name = 'admin.index' );
 
+
+    Route::put('/profile/{user}',[ProfileController::class,'updateProfile'])->name('updateProfile');
+Route::get('/profile',[ProfileController::class,'index'])->name('sortProfile');
+Route::get('/profile/{user}',[ProfileController::class,'edit'])->name('editProfile');
+
     Route :: group ([ 'prefix' => "admin" , "as" => 'admin.','middleware'=>'admin' ], function ()
     {
+        
+        
+
         Route :: resource ( '/news' , AdminNewsController ::class);
         // Route :: resource ( '/category' , AdminCategoryController :: class);
+        
     });
 });
 
@@ -63,3 +73,4 @@ Route :: get ( '/news/{id}' , [ NewsController ::class, 'show' ])
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+

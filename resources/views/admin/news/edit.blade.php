@@ -8,8 +8,12 @@
 @show 
 @section('content')
     <div>
+        <a href="{{route('news.index')}}">
+            Вернутся на главную
+        </a>
+        <br>
         <a href="{{route('admin.index')}}">
-            Выбрать категорию
+            Выбор категории
         </a>
     </div>
     <hr>
