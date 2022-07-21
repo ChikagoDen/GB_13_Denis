@@ -19,7 +19,6 @@
   <h3> Категории</h3>
   <br>
   @foreach($categorys as $category)
-  
     <div>
         <h2>
           <a href="{{route('admin.news.categoryShow', ['category'=>$category])}}">  
@@ -30,4 +29,7 @@
     </div>
   @endforeach
   {{$categorys->links()}}
+  
 @endsection
+
+

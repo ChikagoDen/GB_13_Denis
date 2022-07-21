@@ -35,8 +35,13 @@
         <link href ="{{ asset ('css/index.css')}}" rel="stylesheet" >
         <div class = "body-1">
             @if ((Auth::user()&&Auth::user()->is_admin))
-                  <a href = "{{route('admin.index')}}">
-                    <h3> Категории новостей</h3>
+              <p>Добро пожаловать товарисч -- {{Auth::user()->name}}</p>
+              <a href = "{{route('admin.index')}}">
+                <h3> Редактирование новостей</h3>
+              </a>
+              <a href="{{route('sortProfile')}}">
+                <h3>Редактирование профиля пользователей </h3>
+              </a>
             @else
                @section('content')
                 <a href = "{{route('news.category')}}">
@@ -46,15 +51,6 @@
             @endif
         </div>  
         <br>
-        <div class = "body-2">    
-            @section('perehod')
-                <hr> 
-                <a href="<?=route('news.autorize')?>">
-                    <p>Авторизация</p>
-                </a>
-                <hr> 
-            @show 
-        </div>
     </main>
         <x-foter></x-foter>
         <script src="{{ asset ('js/bootstrap.bundle.min.js') }}"></script>
